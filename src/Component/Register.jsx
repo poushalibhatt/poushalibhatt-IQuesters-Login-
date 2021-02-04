@@ -1,54 +1,60 @@
-import React,{useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React,{useCallback} from 'react';
 import{
     Formik,
     Form,
-    Field,
-    ErrorMessage
+    Field
 }from 'formik';
+import config from './../Firebase/index';
 
-let Register=()=>{
+const initialValues={
+    name: '',
+    email: '',
+    password: '',
+    error: null
+}
 
-    const [name, setName]=useState('');
-    const [email, setEmail]=useState('');
-    const [password, setPassword]=useState('');
-    const [error, setError]= useState(null);
+let Register=({history})=>{
 
-    const registerWithEmailAndPasswordHandler= async(e, email, password)=>{
-
+    const handleSubmit= useCallback(async e =>{
         e.preventDefault();
-
+        const{email, password} = e.target.elements;
         try{
-            const {user} = await auth.createUserWithEmailAndPassword(email, password);
-            generateUserDocument(user);
-          }
-          catch(error){
-            setError('Error Signing up with email and password');
-          }
-      
-          setEmail("");
-          setPassword("");
-          setName("");
-          
-        };
+            await config
+            .auth()
+            .createUserWithEmailAndPassword(email.value, password.value);
+            history.push('/');
+        }catch(error){
+            alert(error);
+        }
+        },[history]);
 
     return(
         <div>
-            <Formik>
-                <Form>
+            <Formik
+                initialValues={initialValues}>
+                <Form onSubmit={handleSubmit}>
                     <div className='card card-body rounded'
                         style={{width: '20rem', height: '20rem'}}>
                             <h1 style={{color: 'darkgray'}}>Register</h1>
                         <div className='form-group'>
-                            <Field type='text' placeholder='Enter user name'/>
+                            <Field 
+                                type='text'
+                                name='name'
+                                placeholder='Enter user name'/>
                         </div>
                         <div className='form-group'>
-                            <Field type='email' placeholder='Enter user email'/>
+                            <Field 
+                                type='email'
+                                name='email' 
+                                placeholder='Enter user email'/>
                         </div>
                         <div className='form-group'>
-                            <Field type='password' placeholder='Enter user password'/>
+                            <Field 
+                                type='password' 
+                                name='password'
+                                placeholder='Enter user password'/>
                         </div>
-                        <button className='btn btn-success' onClick={registerWithEmailAndPasswordHandler}>Register now</button>
+                        <button type='submit' className='btn btn-success'>Register now</button>
                     </div>
                     
                 </Form>

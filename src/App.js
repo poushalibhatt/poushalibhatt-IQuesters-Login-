@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css';
 import DashBoard from './Component/DashBoard';
-import UserProvider from './Component/UserProvider';
+// import UserProvider from './Component/UserProvider';
 
 
 function App() {
   
   return (
     <div className="App">
-      <UserProvider>
+      {/* <UserProvider>
         <DashBoard />
-      </UserProvider>
+      </UserProvider> */}
+      <DashBoard />
     </div>
   );
 }

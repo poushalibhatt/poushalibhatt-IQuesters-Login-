@@ -32,7 +32,6 @@ let LogIn=()=>{
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
- 
         >
             <Form>
                 <div className='card card-body rounded' 

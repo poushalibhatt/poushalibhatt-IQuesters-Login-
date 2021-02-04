@@ -1,21 +1,20 @@
 import React,{createContext, useState, useEffect} from 'react';
-import { generateUserDocument } from '../Firebase';
-import {auth} from './../Firebase/index';
+// import {auth} from './../Firebase/index';
+import config from './../Firebase/index';
 
-export const userContext= createContext({user: null})
-let UserProvider=(props)=>{
+// export const userContext= createContext({user: null})
+export const userContext= createContext()
+
+const UserProvider=({children})=>{
     const[user, setUser]= useState(null);
 
     useEffect(()=>{
-        auth.onAuthStateChanged(async userAuth => {
-            // confusion
-            const user= await generateUserDocument(userAuth)
-            setUser(userAuth)
-        })
-    })
+         config.auth().onAuthStateChanged(setUser)
+    },[]);
+
     return(
-        <userContext.Provider value={user}>
-            {props.children}
+        <userContext.Provider value={{user}}>
+            {children}
         </userContext.Provider>
     )
 }
