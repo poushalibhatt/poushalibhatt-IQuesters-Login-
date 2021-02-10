@@ -9,6 +9,7 @@ import Signout from './Signout';
 import Register from './Register';
 import UserProvider from './UserProvider';
 import PasswordReset from "./PasswordReset";
+import MailAuth from './MailAuth';
 
 let DashBoard=()=>{
     return(
@@ -19,6 +20,7 @@ let DashBoard=()=>{
                 <Route path='/signout' component={Signout} />
                 <Route path='/register' component={Register} />
                 <Route path='/passwordreset' component={PasswordReset} />
+                <Route path='/mailauth' component={MailAuth} />
             </Switch>
             </BrowserRouter>
         </UserProvider>

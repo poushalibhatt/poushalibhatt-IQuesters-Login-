@@ -17,9 +17,9 @@ let PasswordReset=({history})=>{
         .then(()=>{
             history.push('/')
         })
-        .catch(error){
+        .catch((error)=>{
             alert(error);
-        }
+        })
 }
 
     return(

@@ -76,6 +76,9 @@ let LogIn=({history})=>{
                 <div className='w-100 text-center mt-2'>
                     <Link to='/passwordreset'>Forgot Password?</Link>
                 </div>
+                <div className='w-100 text-center mt-2'>
+                    <Link to='/mailauth'>Login with email</Link>
+                </div>
                 <div>
                     Not Registered? <Link to='/register'>Register</Link>
                 </div>
