@@ -6,12 +6,19 @@ let PasswordReset=({history})=>{
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const email= e.target.elements.email.value
-        try{
-            await auth.sendPasswordResetEmail(email)
-            history.push('/');
-        }catch(error){
-            alert('Failed to reset password');
+        const email= e.target.email
+        // try{
+        //     await auth.sendPasswordResetEmail(email)
+        //     history.push('/');
+        // }catch(error){
+        //     alert('Failed to reset password');
+        // }
+        auth.sendPasswordResetEmail(email)
+        .then(()=>{
+            history.push('/')
+        })
+        .catch(error){
+            alert(error);
         }
 }
 
