@@ -1,10 +1,10 @@
-import React,{useCallback} from 'react';
+import React from 'react';
 import{
     Formik,
     Form,
     Field
 }from 'formik';
-import config from './../Firebase/index';
+import {auth} from './../Firebase/index';
 
 const initialValues={
     name: '',
@@ -15,21 +15,22 @@ const initialValues={
 
 let Register=({history})=>{
 
-    const handleSubmit= useCallback(async e =>{
+   async function handleSubmit(e){
         e.preventDefault();
         const{email, password} = e.target.elements;
         try{
-            await config
-            .auth()
-            .createUserWithEmailAndPassword(email.value, password.value);
-            history.push('/');
+            await auth.createUserWithEmailAndPassword(email.value, password.value)
+            history.push('/signout');
         }catch(error){
             alert(error);
         }
-        },[history]);
+    }
 
     return(
-        <div>
+        <div 
+            className='container align-items-center justify-content-center' 
+            style={{minHeight: '100vh', maxWidth: '400px'}}
+        >
             <Formik
                 initialValues={initialValues}>
                 <Form onSubmit={handleSubmit}>

@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-const config= firebase.initializeApp({
+const app= firebase.initializeApp({
     apiKey: "AIzaSyDiUz1SZWmUs_PLLiJZ05wiU_B4gJiip8A",
     authDomain: "reactregister.firebaseapp.com",
     projectId: "reactregister",
@@ -11,7 +11,5 @@ const config= firebase.initializeApp({
     measurementId: "G-1X260MVXR9"
 })
 
-export const auth= config.auth();
-export default config;
-
-  
+export const auth= app.auth();
+export default app;

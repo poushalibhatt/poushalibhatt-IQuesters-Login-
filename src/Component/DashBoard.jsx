@@ -5,9 +5,10 @@ import {
     Route
 } from 'react-router-dom';
 import LogIn from './LogIn';
-import Todo from './Todo';
+import Signout from './Signout';
 import Register from './Register';
 import UserProvider from './UserProvider';
+import PasswordReset from "./PasswordReset";
 
 let DashBoard=()=>{
     return(
@@ -15,8 +16,9 @@ let DashBoard=()=>{
             <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={LogIn}/>
-                <Route path='/todo' component={Todo} />
+                <Route path='/signout' component={Signout} />
                 <Route path='/register' component={Register} />
+                <Route path='/passwordreset' component={PasswordReset} />
             </Switch>
             </BrowserRouter>
         </UserProvider>
